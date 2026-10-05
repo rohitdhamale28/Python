@@ -1,0 +1,33 @@
+---
+title: "first"
+output: html_document
+date: "2026-09-22"
+---
+
+Loading the packages
+
+```{r}
+library(tidyverse)
+```
+
+Loading the dataset
+
+```{r}
+cars2018 <- read.csv("D:/Training/Academy/R Course (C-DAC)/Datasets/cars2018.csv",
+                     stringsAsFactors = T)
+survey <- read.csv("D:/Training/Academy/R Course (C-DAC)/Datasets/survey.csv",
+                     stringsAsFactors = T)
+h <- survey |> 
+        filter(Sex=="Female") |> 
+        select(Exer, Pulse) |> 
+        group_by(Exer) |> 
+        summarise(avg_pulse=mean(Pulse, na.rm=T))
+h
+```
+
+```{r}
+ggplot(data = survey,
+       aes(x=Height, y=Pulse,color = Exer))+
+  geom_point()+
+  facet_grid(Exer~.)
+```

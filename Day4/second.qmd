@@ -1,0 +1,40 @@
+---
+title: "second"
+format: html
+editor: visual
+---
+
+Loading the R packages
+
+```{r}
+library(tidyverse)
+reticulate::use_python("C:/Users/hp/anaconda3/python.exe", required = TRUE)
+```
+
+Loading the dataset
+```{r}
+cars2018 <- read.csv("D:/Training/Academy/R Course (C-DAC)/Datasets/cars2018.csv",
+                     stringsAsFactors = T)
+survey <- read.csv("D:/Training/Academy/R Course (C-DAC)/Datasets/survey.csv",
+                     stringsAsFactors = T)
+h <- survey |> 
+        filter(Sex=="Female") |> 
+        select(Exer, Pulse) |> 
+        group_by(Exer) |> 
+        summarise(avg_pulse=mean(Pulse, na.rm=T))
+h
+```
+Simple Python Code
+```{python}
+d = [90, 34, 92, 9]
+print(d[1])
+```
+
+
+Loading Python packages
+```{python}
+import pandas as pd
+cars2018 = pd.read_csv("D:/Training/Academy/R Course (C-DAC)/Datasets/cars2018.csv")
+cars2018.head()
+```
+
